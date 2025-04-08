@@ -1,6 +1,7 @@
 package main
 
 import (
+	"dev/harrysoler/invoicingvenecia/internal/order/caching"
 	"embed"
 
 	"github.com/wailsapp/wails/v2"
@@ -24,9 +25,9 @@ func main() {
 			Assets: assets,
 		},
 		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
-		OnStartup:        app.startup,
 		Bind: []any{
 			app,
+            caching.OrderFilter{},
 		},
 	})
 
