@@ -1,27 +1,47 @@
 package main
 
 import (
-	"context"
-	"fmt"
+	"dev/harrysoler/invoicingvenecia/internal/invoice"
+	"dev/harrysoler/invoicingvenecia/internal/invoice/maroto"
+	"dev/harrysoler/invoicingvenecia/internal/order/caching"
+	"dev/harrysoler/invoicingvenecia/internal/order/caching/memory"
+	"dev/harrysoler/invoicingvenecia/internal/order/domain"
+	"dev/harrysoler/invoicingvenecia/internal/order/parser"
+	"dev/harrysoler/invoicingvenecia/internal/order/parser/excelize"
 )
 
-// App struct
 type App struct {
-	ctx context.Context
+    excelOrderParser    parser.ExcelOrderParser
+    orderRepository     caching.OrderCachingRepository
+    invoiceService      invoice.InvoiceService
 }
 
-// NewApp creates a new App application struct
 func NewApp() *App {
-	return &App{}
+	return &App{
+        excelOrderParser: excelize.NewExcelizeOrderParser(),
+        orderRepository: memory.NewMemoryOrderCachingRepository(),
+        invoiceService: maroto.NewMarotoStampsRepository(),
+    }
 }
 
-// startup is called when the app starts. The context is saved
-// so we can call the runtime methods
-func (a *App) startup(ctx context.Context) {
-	a.ctx = ctx
+func (app *App) SheetsFromExcelFile(path string) ([]string, error) {
+    return app.excelOrderParser.SheetsFromFile(path)
 }
 
-// Greet returns a greeting for the given name
-func (a *App) Greet(name string) string {
-	return fmt.Sprintf("Hello %s, It's show time!", name)
+func (app *App) ParseOrdersExcelFile(path string, sheet string) error {
+    orders, err := app.excelOrderParser.ParseFile(path, sheet)
+    if err != nil {
+        return err
+    }
+
+    err = app.orderRepository.SetOrders(orders)
+    if err != nil {
+        return err
+    }
+
+    return nil
+} 
+
+func (app *App) OrdersByFilter(filter caching.OrderFilter) ([]domain.Order, error) {
+    return app.orderRepository.OrdersWithFilter(filter)
 }

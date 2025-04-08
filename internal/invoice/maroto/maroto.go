@@ -1,4 +1,4 @@
-package invoice
+package maroto
 
 import (
 	"dev/harrysoler/invoicingvenecia/internal/invoice"
