@@ -1,11 +1,11 @@
 import { Route, Switch } from "wouter";
-import { Button } from "./components/ui/button";
+import { OrdersSidebarHeader } from "@/pages/orders/sidebar-header";
 
 export function Router() {
   return (
     <Switch>
       <Route path="/">
-        <Button>Button</Button>
+        <OrdersSidebarHeader />
       </Route>
       <Route path="orders">
         Orders
