@@ -8,7 +8,7 @@ export function ReturnButton() {
   const onClick = () => navigate("/");
 
   return (
-    <Button variant="outline" onClick={onClick}>
+    <Button variant="outline" onClick={onClick} className="shadow-none">
       <ArrowLeft />Regresar
     </Button>
   );
