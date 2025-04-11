@@ -27,13 +27,13 @@ func (repository *MemoryOrderCachingRepository) OrdersWithFilter(filter caching.
 	orders := make([]domain.Order, 0)
 
 	for _, order := range repository.orders {
-		orderSearchIndex := getOrderSearchIndex(order)
-		isMatchingSearch := strings.Contains(orderSearchIndex, strings.ToLower(filter.FullTextSearch))
+		orderSearchIndex := OrderSearchIndex(order)
+		isSearchIncluded := strings.Contains(orderSearchIndex, strings.ToLower(filter.FullTextSearch))
 
-		isCityEqual := order.City == filter.City || filter.City == ""
-		isPlatformEqual := order.PlatformName == filter.Platform || filter.Platform == ""
+		isCityIncluded := strings.Contains(strings.ToLower(order.City), strings.ToLower(strings.Join(filter.Cities, "")))
+		isPlatformIncluded := strings.Contains(strings.ToLower(order.PlatformName), strings.ToLower(strings.Join(filter.Platforms, "")))
 
-		if isMatchingSearch && isCityEqual && isPlatformEqual {
+		if isSearchIncluded && isCityIncluded && isPlatformIncluded {
 			orders = append(orders, order)
 		}
 	}
@@ -41,7 +41,7 @@ func (repository *MemoryOrderCachingRepository) OrdersWithFilter(filter caching.
 	return orders, nil
 }
 
-func getOrderSearchIndex(order domain.Order) string {
+func OrderSearchIndex(order domain.Order) string {
 	var sb strings.Builder
 
 	sb.WriteString(strings.ToLower(order.OdooReference))
@@ -55,4 +55,8 @@ func getOrderSearchIndex(order domain.Order) string {
 	}
 
 	return sb.String()
+}
+
+func StringSliceContains(value string, slice []string) bool {
+	return strings.Contains(strings.ToLower(value), strings.ToLower(strings.Join(slice, "")))
 }

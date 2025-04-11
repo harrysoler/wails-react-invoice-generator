@@ -11,6 +11,6 @@ type OrderCachingRepository interface {
 type OrderFilter struct {
     // Index by clientName, phone, address, products name and references (odoo and client)
     FullTextSearch  string
-    Platform        string
-    City            string
+    Platforms       []string
+    Cities          []string
 }

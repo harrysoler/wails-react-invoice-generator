@@ -118,22 +118,22 @@ func TestReturnSuccessWhenFilteringOrders(t *testing.T) {
 		},
 		"Platform": {
 			input: caching.OrderFilter{
-				Platform: mockOrders[1].PlatformName,
+				Platforms: []string{mockOrders[1].PlatformName},
 			},
 			result: []domain.Order{mockOrders[1]},
 		},
 		"City": {
 			input: caching.OrderFilter{
-				City: mockOrders[0].City,
+				Cities: []string{mockOrders[0].City},
 			},
 			result: []domain.Order{mockOrders[0]},
 		},
-        "Product": {
-            input: caching.OrderFilter{
-                FullTextSearch: mockOrders[1].Products[0].Name,
-            },
-            result: []domain.Order{mockOrders[1]},
-        },
+		"Product": {
+			input: caching.OrderFilter{
+				FullTextSearch: mockOrders[1].Products[0].Name,
+			},
+			result: []domain.Order{mockOrders[1]},
+		},
 	}
 
 	for field, test := range filterTests {
