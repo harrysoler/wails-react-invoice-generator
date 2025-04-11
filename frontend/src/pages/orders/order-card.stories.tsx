@@ -3,7 +3,7 @@ import { OrderCard } from "./order-card.component";
 import { domain } from "@wailsjs/go/models";
 
 const meta = {
-  title: "Orders/Card",
+  title: "Orders/Sidebar/OrderCard",
   component: OrderCard,
   parameters: {
     layout: "centered",

@@ -5,7 +5,7 @@ import { getMockOrder } from "@/helpers";
 const mockOrders = [...Array(10)].map(getMockOrder);
 
 const meta = {
-  title: "Orders/SidebarContent",
+  title: "Orders/Sidebar/SidebarContent",
   component: OrdersSidebarContent,
   args: {
     orders: mockOrders,

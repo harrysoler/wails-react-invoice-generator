@@ -3,7 +3,7 @@ import { FacetedFilter } from "./faceted-filter.component";
 import { fn } from "@storybook/test";
 
 const meta = {
-  title: "Orders/FacetedFilter",
+  title: "Orders/Sidebar/FacetedFilter",
   component: FacetedFilter,
   parameters: {
       layout: 'centered'
@@ -19,10 +19,10 @@ type Story = StoryObj<typeof FacetedFilter>;
 export const Default: Story = {
   args: {
     title: "Plataforma",
-    options: [
+    options: new Set([
       "Facebook",
       "Falabella",
       "Homecenter",
-    ],
+    ]),
   },
 };

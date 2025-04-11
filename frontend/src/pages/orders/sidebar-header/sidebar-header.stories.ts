@@ -15,7 +15,7 @@ const cityOptions = new Set([
 ]);
 
 const meta = {
-  title: "Orders/SidebarHeader",
+  title: "Orders/Sidebar/SidebarHeader",
   component: OrdersSidebarHeader,
   args: {
     setFilter: fn(),
