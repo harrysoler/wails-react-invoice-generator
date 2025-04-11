@@ -1,9 +1,9 @@
 import { SidebarHeader } from "@/components/ui/sidebar";
+
+import { FacetedFilter } from "@/pages/orders/sidebar/faceted-filter";
 import { SearchOrderInput } from "./search-order-input.component";
 import { ReturnButton } from "./return-button.component";
-
 import { caching } from "@wailsjs/go/models";
-import { FacetedFilter } from "./faceted-filter";
 import logo from "@/assets/images/logo.webp";
 
 type SidebarHeaderProps = {
