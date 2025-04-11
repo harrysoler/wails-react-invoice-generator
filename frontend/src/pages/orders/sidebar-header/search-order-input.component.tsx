@@ -1,4 +1,4 @@
-import { Input } from "@/components/ui/input";
+import { SidebarInput } from "@/components/ui/sidebar";
 import { Search } from "lucide-react";
 import { ChangeEvent } from "react";
 
@@ -12,12 +12,8 @@ export function SearchOrderInput({ onSearch }: SearchInputProps) {
 
   return (
     <div className="relative">
-      <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
-      <Input
-        placeholder="Filtrar ordenes..."
-        className="pl-8"
-        onChange={onChange}
-      />
+      <Search className="absolute left-2 top-2 h-4 w-4 text-muted-foreground pointer-events-none" />
+      <SidebarInput onChange={onChange} placeholder="Filtrar ordenes..." className="pl-8" />
     </div>
   );
 }
