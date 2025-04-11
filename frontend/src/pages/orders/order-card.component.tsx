@@ -18,7 +18,7 @@ export function OrderCard(props: OrderCardProps) {
         key={orderPath}
         className="flex flex-col items-start gap-2 border-b p-4 text-sm leading-tight last:border-b-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
       >
-        <h2 className="pb-2 text-3xl font-semibold tracking-tight">
+        <h2 className="pb-2 text-xl font-semibold tracking-tight">
           {props.order.ClientName}
         </h2>
         <CardDetail icon={ShoppingCart} value={props.order.PlatformName} />
