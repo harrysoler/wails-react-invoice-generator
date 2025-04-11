@@ -8,8 +8,8 @@ import logo from "@/assets/images/logo.webp";
 
 type SidebarHeaderProps = {
   setFilter: React.Dispatch<React.SetStateAction<caching.OrderFilter>>;
-  platformOptions: string[];
-  cityOptions: string[];
+  platforms: Set<string>;
+  cities: Set<string>;
 };
 
 export function OrdersSidebarHeader(props: SidebarHeaderProps) {
@@ -32,12 +32,12 @@ export function OrdersSidebarHeader(props: SidebarHeaderProps) {
       <div className="w-full flex flex-row flex-wrap gap-2">
         <FacetedFilter
           title="Plataforma"
-          options={props.platformOptions}
+          options={props.platforms}
           onChange={onPlatformsChange}
         />
         <FacetedFilter
           title="Ciudad"
-          options={props.cityOptions}
+          options={props.cities}
           onChange={onCitiesChange}
         />
       </div>

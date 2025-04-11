@@ -21,7 +21,7 @@ import { useFilterValues } from "./use-filter-values";
 
 type FacetedFilterProps = {
   title: string;
-  options: string[];
+  options: Set<string>;
   onChange: (values: string[]) => void;
 };
 
@@ -45,7 +45,7 @@ export function FacetedFilter(props: FacetedFilterProps) {
           <CommandList>
             <CommandEmpty>Sin resultados</CommandEmpty>
             <CommandGroup>
-              {props.options.map((option) => (
+              {[...props.options].map((option) => (
                 <FacetedFilterItem
                   option={option}
                   isSelected={isSelected}

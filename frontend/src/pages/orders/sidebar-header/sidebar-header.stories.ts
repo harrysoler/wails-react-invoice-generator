@@ -2,25 +2,25 @@ import { Meta, StoryObj } from "@storybook/react";
 import { OrdersSidebarHeader } from "./sidebar-header.component";
 import { fn } from "@storybook/test";
 
-const platformOptions = [
+const platformOptions = new Set([
   "Facebook",
   "Falabella",
   "HomeCenter",
-];
+]);
 
-const cityOptions = [
+const cityOptions = new Set([
   "Tunja",
   "Bogota",
   "Medellin",
-];
+]);
 
 const meta = {
   title: "Orders/SidebarHeader",
   component: OrdersSidebarHeader,
   args: {
     setFilter: fn(),
-    platformOptions: platformOptions,
-    cityOptions: cityOptions,
+    platforms: platformOptions,
+    cities: cityOptions,
   },
 } satisfies Meta<typeof OrdersSidebarHeader>;
 
