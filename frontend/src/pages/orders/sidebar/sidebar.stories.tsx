@@ -17,7 +17,6 @@ const meta = {
     ),
   ],
   args: {
-    orders: mockOrders,
     setFilter: fn(),
   },
 } satisfies Meta<typeof OrdersSidebar>;
@@ -26,5 +25,13 @@ export default meta;
 type Story = StoryObj<typeof OrdersSidebar>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    orders: mockOrders,
+  },
+};
+
+export const Empty: Story = {
+  args: {
+    orders: [],
+  },
 };
