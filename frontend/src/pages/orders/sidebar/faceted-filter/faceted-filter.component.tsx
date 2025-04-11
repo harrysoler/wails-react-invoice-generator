@@ -113,7 +113,7 @@ function FacetedFilterItem(props: FacetedFilterItemProps) {
       >
         <Check color="white" />
       </div>
-      <span>{props.option}</span>
+      <span className="break-all">{props.option}</span>
     </CommandItem>
   );
 }
