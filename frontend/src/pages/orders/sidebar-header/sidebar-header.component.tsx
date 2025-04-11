@@ -1,27 +1,45 @@
-import { Button } from "@/components/ui/button";
 import { SidebarHeader } from "@/components/ui/sidebar";
-import { ArrowLeft, Search } from "lucide-react";
-import logo from "@/assets/images/logo.webp";
-import { Input } from "@/components/ui/input";
-import { PlatformSelect } from "./platform-select.component";
-import { CitySelect } from "./city-select.component";
+import { SearchOrderInput } from "./search-order-input.component";
+import { ReturnButton } from "./return-button.component";
 
-export function OrdersSidebarHeader() {
+import { caching } from "@wailsjs/go/models";
+import { FacetedFilter } from "./faceted-filter";
+import logo from "@/assets/images/logo.webp";
+
+type SidebarHeaderProps = {
+  setFilter: React.Dispatch<React.SetStateAction<caching.OrderFilter>>;
+  platformOptions: string[];
+  cityOptions: string[];
+};
+
+export function OrdersSidebarHeader(props: SidebarHeaderProps) {
+  const onSearch = (value: string) =>
+    props.setFilter((filter) => ({ ...filter, FullTextSearch: value }));
+
+  const onPlatformsChange = (platforms: string[]) =>
+    props.setFilter((filter) => ({ ...filter, Platforms: platforms }));
+
+  const onCitiesChange = (cities: string[]) =>
+    props.setFilter((filter) => ({ ...filter, Cities: cities }));
+
   return (
     <SidebarHeader className="gap-3.5 border-b p-4">
       <div className="w-full h-9 flex justify-between">
-        <Button>
-          <ArrowLeft />Regresar
-        </Button>
-        <img src={logo} className="h-full w-auto"/>
+        <ReturnButton />
+        <img src={logo} className="h-full w-auto" />
       </div>
-      <div className="relative">
-        <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
-        <Input placeholder="Filtrar ordenes..." className="pl-8" />
-      </div>
-      <div className="w-full flex flex-row gap-2">
-        <PlatformSelect />
-        <CitySelect />
+      <SearchOrderInput onSearch={onSearch} />
+      <div className="w-full flex flex-row flex-wrap gap-2">
+        <FacetedFilter
+          title="Plataforma"
+          options={props.platformOptions}
+          onChange={onPlatformsChange}
+        />
+        <FacetedFilter
+          title="Ciudad"
+          options={props.cityOptions}
+          onChange={onCitiesChange}
+        />
       </div>
     </SidebarHeader>
   );
