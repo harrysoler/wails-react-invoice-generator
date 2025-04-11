@@ -5,6 +5,9 @@ import { fn } from "@storybook/test";
 const meta = {
   title: "Orders/FacetedFilter",
   component: FacetedFilter,
+  parameters: {
+      layout: 'centered'
+  },
   args: {
     onChange: fn(),
   },
