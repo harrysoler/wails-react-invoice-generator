@@ -7,7 +7,7 @@ type OrderDetailsListProps = {
 
 export function OrderDetailsList(props: OrderDetailsListProps) {
   return (
-    <ul className="flex flex-col gap-2">
+    <ul className="flex flex-col gap-4">
       <OrderDetail title="Referencia" value={props.order.ClientReference} />
       <OrderDetail title="Odoo" value={props.order.OdooReference} />
       <OrderDetail title="Ciudad" value={props.order.City} />
@@ -27,7 +27,7 @@ function OrderDetail(props: OrderDetailProps) {
   return (
     <li className="flex flex-col">
       <div className="flex flex-row gap-2 items-center">
-        <h3 className="scroll-m-20 text-md font-semibold tracking-tight leading-none text-muted-foreground">
+        <h3 className="scroll-m-20 text-md font-semibold tracking-tight leading-none">
           {props.title}
         </h3>
         <CopyButton value={props.value} className="text-muted-foreground"/>
