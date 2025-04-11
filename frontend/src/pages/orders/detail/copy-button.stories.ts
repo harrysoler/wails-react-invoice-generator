@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { CopyButton } from "./copy-button.component";
 
 const meta = {
-  title: "Orders/CopyButton",
+  title: "Orders/Detail/CopyButton",
   component: CopyButton,
   parameters: {
     layout: "centered",

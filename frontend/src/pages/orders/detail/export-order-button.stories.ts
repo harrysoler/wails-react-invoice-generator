@@ -4,7 +4,7 @@ import { getMockOrder } from "@/helpers";
 import { fn } from "@storybook/test";
 
 const meta = {
-  title: "Orders/ExportOrderButton",
+  title: "Orders/Detail/ExportOrderButton",
   component: ExportOrderButton,
   parameters: {
     layout: "centered",

@@ -3,7 +3,7 @@ import { getMockOrder } from "@/helpers";
 import { OrderProductsTable } from "./order-products-table.component";
 
 const meta = {
-  title: "Orders/OrderProductsTable",
+  title: "Orders/Detail/OrderProductsTable",
   component: OrderProductsTable,
   parameters: {
     layout: "centered",
