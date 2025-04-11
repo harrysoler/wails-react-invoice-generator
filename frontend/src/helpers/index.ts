@@ -17,6 +17,11 @@ export function getMockOrder(): domain.Order {
     Products: faker.helpers.multiple(() => ({
       Name: faker.commerce.productName(),
       Quantity: faker.number.int({ min: 1, max: 10 }),
-    })),
+    }), {
+        count: {
+            min: 1,
+            max: 10,
+        }
+    }),
   });
 }
