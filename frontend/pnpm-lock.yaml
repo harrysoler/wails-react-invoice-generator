@@ -66,6 +66,9 @@ importers:
       '@chromatic-com/storybook':
         specifier: ^3
         version: 3.2.6(react@19.1.0)(storybook@8.6.12)
+      '@faker-js/faker':
+        specifier: ^9.6.0
+        version: 9.6.0
       '@storybook/addon-essentials':
         specifier: ^8.6.12
         version: 8.6.12(@types/react@19.1.0)(storybook@8.6.12)
@@ -372,6 +375,10 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@faker-js/faker@9.6.0':
+    resolution: {integrity: sha512-3vm4by+B5lvsFPSyep3ELWmZfE3kicDtmemVpuwl1yH7tqtnHdsA6hG8fbXedMVdkzgtvzWoRgjSB4Q+FHnZiw==}
+    engines: {node: '>=18.0.0', npm: '>=9.0.0'}
 
   '@floating-ui/core@1.6.9':
     resolution: {integrity: sha512-uMXCuQ3BItDUbAMhIXw7UPXRfAlOAvZzdK9BWpE60MCn+Svt3aLn9jsPTi/WNGlRUu2uI0v5S7JiIUsbsvh3fw==}
@@ -2564,6 +2571,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.25.2':
     optional: true
+
+  '@faker-js/faker@9.6.0': {}
 
   '@floating-ui/core@1.6.9':
     dependencies:
