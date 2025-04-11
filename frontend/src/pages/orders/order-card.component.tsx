@@ -25,7 +25,7 @@ export function OrderCard(props: OrderCardProps) {
           <CardDetail icon={MapPin} value={props.order.Address} />
           <CardDetail icon={Phone} value={props.order.PhoneNumber} />
         </ul>
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row flex-wrap gap-2">
           <Badge>{props.order.City}</Badge>
           <Badge variant='secondary'>{props.order.Products.length} Productos</Badge>
         </div>
