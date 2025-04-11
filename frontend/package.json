@@ -11,6 +11,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@fontsource-variable/geist": "^5.2.5",
     "@radix-ui/react-checkbox": "^1.1.5",
     "@radix-ui/react-dialog": "^1.1.7",
     "@radix-ui/react-popover": "^1.1.7",
