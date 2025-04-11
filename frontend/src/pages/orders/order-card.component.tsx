@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { getOrderEntry } from "@/helpers";
 import { domain } from "@wailsjs/go/models";
 import { MapPin, Phone, ShoppingCart } from "lucide-react";
@@ -14,14 +15,20 @@ export function OrderCard(props: OrderCardProps) {
     <li>
       <Link
         href={"/orders/" + orderEntry}
-        className="flex flex-col items-start gap-2 border-b p-4 text-sm leading-tight last:border-b-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+        className="flex flex-col items-start gap-4 border-b p-4 text-sm leading-tight last:border-b-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
       >
-        <h2 className="pb-2 text-xl font-semibold tracking-tight">
+        <h2 className="text-xl font-semibold leading-none tracking-tight">
           {props.order.ClientName}
         </h2>
-        <CardDetail icon={ShoppingCart} value={props.order.PlatformName} />
-        <CardDetail icon={MapPin} value={props.order.Address} />
-        <CardDetail icon={Phone} value={props.order.PhoneNumber} />
+        <ul className="flex flex-col gap-2">
+          <CardDetail icon={ShoppingCart} value={props.order.PlatformName} />
+          <CardDetail icon={MapPin} value={props.order.Address} />
+          <CardDetail icon={Phone} value={props.order.PhoneNumber} />
+        </ul>
+        <div className="flex flex-row gap-2">
+          <Badge>{props.order.City}</Badge>
+          <Badge variant='secondary'>{props.order.Products.length} Productos</Badge>
+        </div>
       </Link>
     </li>
   );
@@ -36,14 +43,14 @@ type CardDetailProps = {
 
 function CardDetail(props: CardDetailProps) {
   return (
-    <div className="flex items-start gap-4">
+    <li className="flex items-start gap-4">
       <props.icon
         size={16}
-        style={{ stroke: "var(--foreground)", minWidth: "min-content" }}
+        className="text-muted-foreground"
       />
       <p className="text-xs text-wrap break-normal font-medium text-foreground whitespace-break-spaces">
         {props.value}
       </p>
-    </div>
+    </li>
   );
 }
