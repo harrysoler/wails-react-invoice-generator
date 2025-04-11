@@ -74,7 +74,7 @@ function FacetedFilterTrigger(props: FacetedFilterTriggerProps) {
       <Button
         variant="outline"
         size="sm"
-        className="h-8 border-dashed grow flex-1 justify-start"
+        className="h-8 border-dashed justify-start"
       >
         <PlusCircle />
         {props.title}

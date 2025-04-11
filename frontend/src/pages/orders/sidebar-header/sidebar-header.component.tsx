@@ -29,7 +29,7 @@ export function OrdersSidebarHeader(props: SidebarHeaderProps) {
         <img src={logo} className="h-full w-auto" />
       </div>
       <SearchOrderInput onSearch={onSearch} />
-      <div className="w-full flex flex-row flex-wrap gap-2">
+      <div className="w-full flex flex-col gap-2">
         <FacetedFilter
           title="Plataforma"
           options={props.platforms}
