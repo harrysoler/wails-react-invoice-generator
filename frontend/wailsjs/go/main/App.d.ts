@@ -3,7 +3,13 @@
 import {caching} from '../models';
 import {domain} from '../models';
 
+export function OpenExcelFile():Promise<string>;
+
 export function OrdersByFilter(arg1:caching.OrderFilter):Promise<Array<domain.Order>>;
+
+export function OrdersCities():Promise<Array<string>>;
+
+export function OrdersPlatformNames():Promise<Array<string>>;
 
 export function ParseOrdersExcelFile(arg1:string,arg2:string):Promise<void>;
 

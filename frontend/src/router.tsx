@@ -1,11 +1,11 @@
 import { Route, Switch } from "wouter";
-import { OrdersSidebarHeader } from "@/pages/orders/sidebar-header";
+import { SourceSelectPage } from "./pages/source-select";
 
 export function Router() {
   return (
     <Switch>
       <Route path="/">
-        <OrdersSidebarHeader />
+        <SourceSelectPage />
       </Route>
       <Route path="orders">
         Orders

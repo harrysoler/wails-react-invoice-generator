@@ -8,7 +8,7 @@ export function SourceButtonRow(props: SourceButtonRowProps) {
   return (
     <ul className="grid grid-flow-col auto-cols-fr gap-2">
       {Array.isArray(props.children)
-        ? props.children.map((child) => <ButtonRowItem>{child}</ButtonRowItem>)
+        ? props.children.map((child, index) => <ButtonRowItem key={'source-button-' + index}>{child}</ButtonRowItem>)
         : <ButtonRowItem>{props.children}</ButtonRowItem>}
     </ul>
   );
