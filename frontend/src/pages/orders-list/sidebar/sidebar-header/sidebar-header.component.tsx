@@ -1,6 +1,6 @@
 import { SidebarHeader } from "@/components/ui/sidebar";
 
-import { FacetedFilter } from "@/pages/orders/sidebar/faceted-filter";
+import { FacetedFilter } from "@/pages/orders-list/sidebar/faceted-filter";
 import { SearchOrderInput } from "./search-order-input.component";
 import { ReturnButton } from "./return-button.component";
 import { caching } from "@wailsjs/go/models";
