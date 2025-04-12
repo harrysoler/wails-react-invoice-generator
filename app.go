@@ -45,3 +45,11 @@ func (app *App) ParseOrdersExcelFile(path string, sheet string) error {
 func (app *App) OrdersByFilter(filter caching.OrderFilter) ([]domain.Order, error) {
     return app.orderRepository.OrdersWithFilter(filter)
 }
+
+func (app *App) OrdersPlatformNames() []string {
+    return app.orderRepository.Platforms()
+}
+
+func (app *App) OrdersCities() []string {
+    return app.orderRepository.Cities()
+}
