@@ -64,20 +64,39 @@ func NewTestMemoryRepository() (*TestMemoryRepository, error) {
 	return &TestMemoryRepository{repository}, nil
 }
 
-func TestReturnsSuccessWhenSettingOrders(t *testing.T) {
+func TestReturnsPlatformNamesFromMemory(t *testing.T) {
 	repository, err := NewTestMemoryRepository()
 	if err != nil {
 		t.Error(err)
 		return
 	}
 
-	got, err := repository.AllOrders()
+	want := []string{
+		mockOrders[0].PlatformName,
+		mockOrders[1].PlatformName,
+	}
+	got := repository.Platforms()
+
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("Platforms() = %#v, want %#v", got, want)
+	}
+}
+
+func TestReturnsCitiesFromMemory(t *testing.T) {
+	repository, err := NewTestMemoryRepository()
 	if err != nil {
-		t.Errorf("AllOrders() = <any>, %q, want <mock-orders>", err)
+		t.Error(err)
+		return
 	}
 
-	if !reflect.DeepEqual(got, mockOrders) {
-		t.Errorf("AllOrders() = %#v, nil, want %#v", got, mockOrders)
+	want := []string{
+		mockOrders[0].City,
+		mockOrders[1].City,
+	}
+	got := repository.Cities()
+
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("Cities() = %#v, want %#v", got, want)
 	}
 }
 

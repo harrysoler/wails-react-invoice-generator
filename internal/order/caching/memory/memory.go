@@ -19,8 +19,24 @@ func (repository *MemoryOrderCachingRepository) SetOrders(orders []domain.Order)
 	return nil
 }
 
-func (repository *MemoryOrderCachingRepository) AllOrders() ([]domain.Order, error) {
-	return repository.orders, nil
+func (repository *MemoryOrderCachingRepository) Platforms() []string {
+    platforms := make([]string, len(repository.orders))
+
+    for index, order := range repository.orders {
+        platforms[index] = order.PlatformName
+    }
+
+    return platforms
+}
+
+func (repository *MemoryOrderCachingRepository) Cities() []string {
+    platforms := make([]string, len(repository.orders))
+
+    for index, order := range repository.orders {
+        platforms[index] = order.City
+    }
+
+    return platforms
 }
 
 func (repository *MemoryOrderCachingRepository) OrdersWithFilter(filter caching.OrderFilter) ([]domain.Order, error) {
