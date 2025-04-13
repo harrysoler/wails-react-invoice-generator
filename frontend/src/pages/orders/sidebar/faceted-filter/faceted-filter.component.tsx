@@ -21,7 +21,7 @@ import { useFilterValues } from "./use-filter-values";
 
 type FacetedFilterProps = {
   title: string;
-  options: Set<string>;
+  options: string[];
   onChange: (values: string[]) => void;
 };
 

@@ -7,6 +7,7 @@ import (
 	"maps"
 	"slices"
 	"strconv"
+	"strings"
 
 	"github.com/xuri/excelize/v2"
 )
@@ -134,14 +135,14 @@ func unmarshalOrder(row []string, indexes columnIndexes) (domain.Order, error) {
 	}
 
 	order := domain.Order{
-		OdooReference:   row[indexes[OdooReferenceField]],
-		ClientReference: row[indexes[ClientReferenceField]],
-		ClientName:      row[indexes[ClientNameField]],
-		PlatformName:    row[indexes[PlatformNameField]],
+		OdooReference:   strings.TrimSpace(row[indexes[OdooReferenceField]]),
+		ClientReference: strings.TrimSpace(row[indexes[ClientReferenceField]]),
+		ClientName:      strings.TrimSpace(row[indexes[ClientNameField]]),
+		PlatformName:    strings.TrimSpace(row[indexes[PlatformNameField]]),
 		Products:        []domain.Product{product},
-		Address:         row[indexes[AddressField]],
-		PhoneNumber:     row[indexes[PhoneNumberField]],
-		City:            row[indexes[CityField]],
+		Address:         strings.TrimSpace(row[indexes[AddressField]]),
+		PhoneNumber:     strings.TrimSpace(row[indexes[PhoneNumberField]]),
+		City:            strings.TrimSpace(row[indexes[CityField]]),
 	}
 
 	err = order.Validate()

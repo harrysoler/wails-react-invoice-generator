@@ -8,16 +8,21 @@ import { Cloud } from "lucide-react";
 import logo from "@/assets/images/logo.webp";
 import { getSheetsFromFile, parseOrdersFile } from "./file-source.api";
 import { handleError } from "@/helpers/error-handler";
+import { useLocation } from "wouter";
 
 export function SourceSelectPage() {
   const [sheetDialog, selectSheet] = useSelectSheet();
+  const [_, navigate] = useLocation();
 
   async function onSelectFile(path: string) {
     const parseResult = await getSheetsFromFile(path)
       .andThen(selectSheet)
       .andThen((sheet) => parseOrdersFile(path, sheet));
 
-    parseResult.mapErr(handleError);
+    parseResult.match(
+      () => navigate("/orders"),
+      handleError,
+    );
   }
 
   return (

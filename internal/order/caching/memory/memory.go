@@ -3,6 +3,7 @@ package memory
 import (
 	"dev/harrysoler/invoicingvenecia/internal/order/caching"
 	"dev/harrysoler/invoicingvenecia/internal/order/domain"
+	"slices"
 	"strings"
 )
 
@@ -20,23 +21,27 @@ func (repository *MemoryOrderCachingRepository) SetOrders(orders []domain.Order)
 }
 
 func (repository *MemoryOrderCachingRepository) Platforms() []string {
-    platforms := make([]string, len(repository.orders))
+	platforms := make([]string, 0)
 
-    for index, order := range repository.orders {
-        platforms[index] = order.PlatformName
-    }
+	for _, order := range repository.orders {
+		if !slices.Contains(platforms, order.PlatformName) {
+			platforms = append(platforms, order.PlatformName)
+		}
+	}
 
-    return platforms
+	return platforms
 }
 
 func (repository *MemoryOrderCachingRepository) Cities() []string {
-    platforms := make([]string, len(repository.orders))
+	cities := make([]string, 0)
 
-    for index, order := range repository.orders {
-        platforms[index] = order.City
-    }
+	for _, order := range repository.orders {
+		if !slices.Contains(cities, order.City) {
+			cities = append(cities, order.City)
+		}
+	}
 
-    return platforms
+	return cities
 }
 
 func (repository *MemoryOrderCachingRepository) OrdersWithFilter(filter caching.OrderFilter) ([]domain.Order, error) {
@@ -44,10 +49,13 @@ func (repository *MemoryOrderCachingRepository) OrdersWithFilter(filter caching.
 
 	for _, order := range repository.orders {
 		orderSearchIndex := OrderSearchIndex(order)
-		isSearchIncluded := strings.Contains(orderSearchIndex, strings.ToLower(filter.FullTextSearch))
+		isSearchIncluded := strings.Contains(orderSearchIndex, strings.ToLower(filter.FullTextSearch)) || filter.FullTextSearch == ""
 
-		isCityIncluded := strings.Contains(strings.ToLower(order.City), strings.ToLower(strings.Join(filter.Cities, "")))
-		isPlatformIncluded := strings.Contains(strings.ToLower(order.PlatformName), strings.ToLower(strings.Join(filter.Platforms, "")))
+		// isCityIncluded := StringSliceIncludes(order.City, filter.Cities) || len(filter.Cities) == 0
+		// isPlatformIncluded := StringSliceIncludes(order.PlatformName, filter.Platforms) || len(filter.Platforms) == 0
+
+        isCityIncluded := slices.Contains(filter.Cities, order.City) || len(filter.Cities) == 0
+        isPlatformIncluded := slices.Contains(filter.Platforms, order.PlatformName) || len(filter.Platforms) == 0
 
 		if isSearchIncluded && isCityIncluded && isPlatformIncluded {
 			orders = append(orders, order)
@@ -71,8 +79,4 @@ func OrderSearchIndex(order domain.Order) string {
 	}
 
 	return sb.String()
-}
-
-func StringSliceContains(value string, slice []string) bool {
-	return strings.Contains(strings.ToLower(value), strings.ToLower(strings.Join(slice, "")))
 }

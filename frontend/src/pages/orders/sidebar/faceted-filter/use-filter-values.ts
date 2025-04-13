@@ -19,6 +19,7 @@ export function useFilterValues<T>(callback: (values: T[]) => void) {
 
   function clearValues() {
     setArray([]);
+    callback([]);
   }
 
   return { array, hasValue, toggleValue, clearValues } as const;

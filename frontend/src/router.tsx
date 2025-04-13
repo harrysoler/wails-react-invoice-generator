@@ -1,15 +1,12 @@
 import { Route, Switch } from "wouter";
 import { SourceSelectPage } from "./pages/source-select";
+import { OrdersPage } from "./pages/orders";
 
 export function Router() {
   return (
     <Switch>
-      <Route path="/">
-        <SourceSelectPage />
-      </Route>
-      <Route path="orders">
-        Orders
-      </Route>
+      <Route path="/" component={SourceSelectPage} />
+      <Route path="/orders" component={OrdersPage} />
     </Switch>
   );
 }

@@ -2,17 +2,17 @@ import { Meta, StoryObj } from "@storybook/react";
 import { OrdersSidebarHeader } from "./sidebar-header.component";
 import { fn } from "@storybook/test";
 
-const platformOptions = new Set([
+const platformOptions = [
   "Facebook",
   "Falabella",
   "HomeCenter",
-]);
+];
 
-const cityOptions = new Set([
+const cityOptions = [
   "Tunja",
   "Bogota",
   "Medellin",
-]);
+];
 
 const meta = {
   title: "Orders/Sidebar/SidebarHeader",

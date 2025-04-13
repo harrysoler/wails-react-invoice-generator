@@ -19,10 +19,10 @@ type Story = StoryObj<typeof FacetedFilter>;
 export const Default: Story = {
   args: {
     title: "Plataforma",
-    options: new Set([
+    options: [
       "Facebook",
       "Falabella",
       "Homecenter",
-    ]),
+    ],
   },
 };

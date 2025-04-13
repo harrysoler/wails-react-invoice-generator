@@ -47,6 +47,25 @@ var mockOrders = []domain.Order{
 			},
 		},
 	},
+	{
+		ClientName:      "OTRO NOMBRE",
+		OdooReference:   "S270121A",
+		ClientReference: "13925521A",
+		PlatformName:    "HOME",
+		Address:         "Carrera 48 # 82-71A",
+		City:            "BOGOTA",
+		PhoneNumber:     "30077117411",
+		Products: []domain.Product{
+			{
+				Name:     "BUTACO KENTUCKY DICOSTA TRIGO (MATIZ CAOBA)",
+				Quantity: 7,
+			},
+			{
+				Name:     "SOFA TOULOUSE DUSTER GRIS (MATIZ NATURAL)",
+				Quantity: 3,
+			},
+		},
+	},
 }
 
 type TestMemoryRepository struct {

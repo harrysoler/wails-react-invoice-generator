@@ -1,6 +1,6 @@
 import { SidebarHeader } from "@/components/ui/sidebar";
 
-import { FacetedFilter } from "@/pages/orders-list/sidebar/faceted-filter";
+import { FacetedFilter } from "@/pages/orders/sidebar/faceted-filter";
 import { SearchOrderInput } from "./search-order-input.component";
 import { ReturnButton } from "./return-button.component";
 import { caching } from "@wailsjs/go/models";
@@ -8,8 +8,8 @@ import logo from "@/assets/images/logo.webp";
 
 type SidebarHeaderProps = {
   setFilter: React.Dispatch<React.SetStateAction<caching.OrderFilter>>;
-  platforms: Set<string>;
-  cities: Set<string>;
+  platforms: string[];
+  cities: string[];
 };
 
 export function OrdersSidebarHeader(props: SidebarHeaderProps) {
