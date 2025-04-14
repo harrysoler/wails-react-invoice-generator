@@ -29,6 +29,8 @@ func (repository *MemoryOrderCachingRepository) Platforms() []string {
 		}
 	}
 
+    slices.Sort(platforms)
+
 	return platforms
 }
 
@@ -40,6 +42,8 @@ func (repository *MemoryOrderCachingRepository) Cities() []string {
 			cities = append(cities, order.City)
 		}
 	}
+
+    slices.Sort(cities)
 
 	return cities
 }

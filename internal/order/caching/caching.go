@@ -5,6 +5,7 @@ import "dev/harrysoler/invoicingvenecia/internal/order/domain"
 type OrderCachingRepository interface {
     SetOrders(orders []domain.Order) error
     OrdersWithFilter(filter OrderFilter) ([]domain.Order, error)
+    // Must be ordered asc
     Platforms() []string
     Cities() []string
 }

@@ -5,6 +5,7 @@ import (
 	"dev/harrysoler/invoicingvenecia/internal/order/domain"
 	"fmt"
 	"reflect"
+	"slices"
 	"testing"
 )
 
@@ -49,19 +50,19 @@ var mockOrders = []domain.Order{
 	},
 	{
 		ClientName:      "OTRO NOMBRE",
-		OdooReference:   "S270121A",
-		ClientReference: "13925521A",
-		PlatformName:    "HOME",
-		Address:         "Carrera 48 # 82-71A",
+		OdooReference:   "S3857691",
+		ClientReference: "16829129585634",
+		PlatformName:    "FL",
+		Address:         "CALLE 34 Nª 86 A - 67 BLOQ 3 APTO 322 UND RESIDENCIAL GUADARAMA 2",
 		City:            "BOGOTA",
 		PhoneNumber:     "30077117411",
 		Products: []domain.Product{
 			{
-				Name:     "BUTACO KENTUCKY DICOSTA TRIGO (MATIZ CAOBA)",
+				Name:     "COJIN DECORATIVO BALLS COLORS",
 				Quantity: 7,
 			},
 			{
-				Name:     "SOFA TOULOUSE DUSTER GRIS (MATIZ NATURAL)",
+				Name:     "CUADRO ELEFANTE BEBE M (70X45)",
 				Quantity: 3,
 			},
 		},
@@ -93,7 +94,11 @@ func TestReturnsPlatformNamesFromMemory(t *testing.T) {
 	want := []string{
 		mockOrders[0].PlatformName,
 		mockOrders[1].PlatformName,
+		mockOrders[2].PlatformName,
 	}
+
+	slices.Sort(want)
+
 	got := repository.Platforms()
 
 	if !reflect.DeepEqual(got, want) {
@@ -112,6 +117,8 @@ func TestReturnsCitiesFromMemory(t *testing.T) {
 		mockOrders[0].City,
 		mockOrders[1].City,
 	}
+	slices.Sort(want)
+
 	got := repository.Cities()
 
 	if !reflect.DeepEqual(got, want) {
