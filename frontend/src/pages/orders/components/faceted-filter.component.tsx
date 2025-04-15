@@ -1,5 +1,3 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -14,10 +12,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
 import { Check, PlusCircle } from "lucide-react";
-import { useFilterValues } from "./use-filter-values";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+
+import { useToggleArray } from "@/pages/orders/hooks";
+import { cn } from "@/lib/utils";
 
 type FacetedFilterProps = {
   title: string;
@@ -27,16 +28,16 @@ type FacetedFilterProps = {
 
 export function FacetedFilter(props: FacetedFilterProps) {
   const {
-    array: selected,
-    hasValue: isSelected,
-    toggleValue: onSelectOption,
-    clearValues: onSelectClear,
-  } = useFilterValues(props.onChange);
+    array: selectedValues,
+    has: isSelected,
+    toggle: onSelectOption,
+    clear: onClear,
+  } = useToggleArray(undefined, props.onChange);
 
   return (
     <Popover>
       <FacetedFilterTrigger
-        selectedValuesSize={selected.length}
+        valuesLength={selectedValues.length}
         title={props.title}
       />
       <PopoverContent className="w-[200px] p-0" align="start">
@@ -53,8 +54,8 @@ export function FacetedFilter(props: FacetedFilterProps) {
                 />
               ))}
             </CommandGroup>
-            {selected.length > 0 && (
-              <FacetedFilterClear onSelectClear={onSelectClear} />
+            {selectedValues.length > 0 && (
+              <FacetedFilterClear onClear={onClear} />
             )}
           </CommandList>
         </Command>
@@ -64,7 +65,7 @@ export function FacetedFilter(props: FacetedFilterProps) {
 }
 
 type FacetedFilterTriggerProps = {
-  selectedValuesSize: number;
+  valuesLength: number;
   title: string;
 };
 
@@ -78,14 +79,14 @@ function FacetedFilterTrigger(props: FacetedFilterTriggerProps) {
       >
         <PlusCircle />
         {props.title}
-        {props.selectedValuesSize > 0 && (
+        {props.valuesLength > 0 && (
           <>
             <Separator orientation="vertical" className="mx-2 h-4" />
             <Badge
               variant="secondary"
               className="rounded-sm px-1 font-normal"
             >
-              {props.selectedValuesSize}
+              {props.valuesLength}
             </Badge>
           </>
         )}
@@ -118,13 +119,13 @@ function FacetedFilterItem(props: FacetedFilterItemProps) {
   );
 }
 
-function FacetedFilterClear({ onSelectClear }: { onSelectClear: () => void }) {
+function FacetedFilterClear({ onClear }: { onClear: () => void }) {
   return (
     <>
       <CommandSeparator />
       <CommandGroup>
         <CommandItem
-          onSelect={onSelectClear}
+          onSelect={onClear}
           className="justify-center text-center"
         >
           Limpiar filtros

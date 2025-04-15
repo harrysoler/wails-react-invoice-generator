@@ -3,15 +3,16 @@ import {
   SidebarGroup,
   SidebarGroupContent,
 } from "@/components/ui/sidebar";
-import { domain } from "@wailsjs/go/models";
-import { OrderCard } from "./order-card.component";
-import { getOrderEntry } from "@/helpers";
 
-type SidebarContentProps = {
+import { getOrderEntry } from "@/helpers";
+import { OrderCard } from "@/pages/orders/components";
+import { domain } from "@wailsjs/go/models";
+
+type OrdersSidebarListProps = {
   orders: domain.Order[];
 };
 
-export function OrdersSidebarContent(props: SidebarContentProps) {
+export function SidebarOrderList(props: OrdersSidebarListProps) {
   return (
     <SidebarContent>
       <SidebarGroup className="p-0">

@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { FacetedFilter } from "./faceted-filter.component";
 import { fn } from "@storybook/test";
+import { FacetedFilter } from ".";
 
 const meta = {
   title: "Orders/Sidebar/FacetedFilter",
   component: FacetedFilter,
   parameters: {
-      layout: 'centered'
+    layout: "centered",
   },
   args: {
     onChange: fn(),

@@ -21,11 +21,14 @@ export function OrderCard(props: OrderCardProps) {
           {props.order.ClientName}
         </h2>
         <ul className="flex flex-col gap-2">
-          <CardDetail icon={ShoppingCart} value={props.order.PlatformName} />
-          <CardDetail icon={MapPin} value={props.order.Address} />
-          <code>
-            <CardDetail icon={Phone} value={props.order.PhoneNumber} />
-          </code>
+          <CardDetailItem
+            icon={ShoppingCart}
+            value={props.order.PlatformName}
+          />
+          <CardDetailItem icon={MapPin} value={props.order.Address} />
+          <pre>
+            <CardDetailItem icon={Phone} value={props.order.PhoneNumber} />
+          </pre>
         </ul>
         <div className="flex flex-row flex-wrap gap-2">
           <Badge>{props.order.City}</Badge>
@@ -38,19 +41,19 @@ export function OrderCard(props: OrderCardProps) {
   );
 }
 
-type CardDetailProps = {
+type CardDetailItemProps = {
   icon: React.ComponentType<
-    { size?: number; style?: React.CSSProperties; className?: string }
+    { size?: number; className?: string }
   >;
   value: string;
 };
 
-function CardDetail(props: CardDetailProps) {
+function CardDetailItem(props: CardDetailItemProps) {
   return (
     <li className="flex items-start gap-4">
       <props.icon
         size={16}
-        className="text-muted-foreground"
+        className="text-muted-foreground min-w-min"
       />
       <p className="text-xs text-wrap break-normal font-medium text-foreground whitespace-break-spaces">
         {props.value}

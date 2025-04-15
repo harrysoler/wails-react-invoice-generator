@@ -12,9 +12,7 @@ export async function getOrdersByFilter(
 }
 
 export async function getPlatformNames() {
-  const platforms = await OrdersPlatformNames();
-  console.log(platforms)
-  return platforms
+  return OrdersPlatformNames();
 }
 
 export async function getCities() {

@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { OrderCard } from "./order-card.component";
+import { OrderCard } from ".";
 import { domain } from "@wailsjs/go/models";
 
 const meta = {
