@@ -1,5 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
-import { FacetedFilter } from "../components";
+import {
+  useQueryErrorResetBoundary,
+  useSuspenseQuery,
+} from "@tanstack/react-query";
+import { ErrorBoundary } from "react-error-boundary";
+import { Suspense } from "react";
+
+import {
+  FacetedFilter,
+  FacetedFilterErrorBoundary,
+  FacetedFilterSkeleton,
+} from "@/pages/orders/components";
 
 type AsyncFacetedFilterProps = {
   title: string;
@@ -7,20 +17,34 @@ type AsyncFacetedFilterProps = {
   onChange: (values: string[]) => void;
 };
 
-export function AsyncFacetedFilter(props: AsyncFacetedFilterProps) {
-  const { data, isLoading } = useQuery({
+function AsyncFacetedFilterImpl(props: AsyncFacetedFilterProps) {
+  const { data } = useSuspenseQuery({
     queryKey: ["faceted-filter", props.title],
     queryFn: props.resolver,
     staleTime: Infinity,
+    retry: 1,
   });
-
-  if (isLoading) return <p>Loading...</p>;
 
   return (
     <FacetedFilter
       onChange={props.onChange}
-      options={data ?? []}
+      options={data}
       title={props.title}
     />
+  );
+}
+
+export function AsyncFacetedFilter(props: AsyncFacetedFilterProps) {
+  const { reset } = useQueryErrorResetBoundary();
+
+  return (
+    <ErrorBoundary
+      onReset={reset}
+      FallbackComponent={FacetedFilterErrorBoundary}
+    >
+      <Suspense fallback={<FacetedFilterSkeleton />}>
+        <AsyncFacetedFilterImpl {...props} />
+      </Suspense>
+    </ErrorBoundary>
   );
 }

@@ -3,7 +3,6 @@ import { handleError } from "@/helpers/error-handler";
 import { CircleAlert } from "lucide-react";
 
 type FacetedFilterErrorBoundaryProps = {
-  title: string;
   error: unknown;
   resetErrorBoundary: () => void;
 };
@@ -12,8 +11,8 @@ export function FacetedFilterErrorBoundary(
   props: FacetedFilterErrorBoundaryProps,
 ) {
   function onClick() {
-    handleError(props.error, {
-      label: "Try Again",
+    handleError("No se pudo traer filtro: " + props.error, {
+      label: "Reintentar",
       onClick: props.resetErrorBoundary,
     });
   }
@@ -25,7 +24,7 @@ export function FacetedFilterErrorBoundary(
       onClick={onClick}
     >
       <CircleAlert />
-      {props.title}
+      Error
     </Button>
   );
 }
