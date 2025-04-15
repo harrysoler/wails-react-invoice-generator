@@ -126,7 +126,45 @@ func TestReturnsCitiesFromMemory(t *testing.T) {
 	}
 }
 
-func TestReturnSuccessWhenFilteringOrders(t *testing.T) {
+func TestReturnOrderByOdooReference(t *testing.T) {
+	repository, err := NewTestMemoryRepository()
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	want := mockOrders[0]
+	index := want.OdooReference
+	got, err := repository.OrderWithOdoo(index)
+	if err != nil {
+		t.Errorf("OrderWithOdoo(%#v) = <order>, %q, want <order>, nil", index, err)
+		return
+	}
+
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("OrderWithOdoo(%#v) = %#v, nil, want <order>, nil", index, got)
+		return
+	}
+}
+
+func TestReturnErrorByWrongOdooReference(t *testing.T) {
+	repository, err := NewTestMemoryRepository()
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	index := "RandomOdooRefNonExistentInMockOrders"
+	want := errOrderNotFound(index)
+
+	got, err := repository.OrderWithOdoo(index)
+	if err == nil {
+		t.Errorf("OrderWithOdoo(%#v) = %#v, nil, want nil, %q", index, got, want)
+		return
+	}
+}
+
+func TestReturnOrdersWhenFilteringBy(t *testing.T) {
 	filterTests := map[string]struct {
 		input  caching.OrderFilter
 		result []domain.Order
@@ -182,7 +220,7 @@ func TestReturnSuccessWhenFilteringOrders(t *testing.T) {
 	}
 
 	for field, test := range filterTests {
-		t.Run("returns order when filtering by "+field, func(t *testing.T) {
+		t.Run(field, func(t *testing.T) {
 			t.Parallel()
 
 			repository, err := NewTestMemoryRepository()
@@ -193,7 +231,7 @@ func TestReturnSuccessWhenFilteringOrders(t *testing.T) {
 
 			got, err := repository.OrdersWithFilter(test.input)
 			if err != nil {
-				t.Errorf("OrdersWithFilter(%#v) = <orders>, %q, want <orders>, nil", test.input, err)
+				t.Errorf("OrdersWithFilter(%#v) = <any>, %q, want <orders>, nil", test.input, err)
 				return
 			}
 

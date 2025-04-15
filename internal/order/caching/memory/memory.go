@@ -3,9 +3,14 @@ package memory
 import (
 	"dev/harrysoler/invoicingvenecia/internal/order/caching"
 	"dev/harrysoler/invoicingvenecia/internal/order/domain"
+	"fmt"
 	"slices"
 	"strings"
 )
+
+func errOrderNotFound(odooReference string) error {
+	return fmt.Errorf("order with odoo reference: %q not found", odooReference)
+}
 
 type MemoryOrderCachingRepository struct {
 	orders []domain.Order
@@ -29,7 +34,7 @@ func (repository *MemoryOrderCachingRepository) Platforms() []string {
 		}
 	}
 
-    slices.Sort(platforms)
+	slices.Sort(platforms)
 
 	return platforms
 }
@@ -43,9 +48,19 @@ func (repository *MemoryOrderCachingRepository) Cities() []string {
 		}
 	}
 
-    slices.Sort(cities)
+	slices.Sort(cities)
 
 	return cities
+}
+
+func (repository *MemoryOrderCachingRepository) OrderWithOdoo(odooReference string) (domain.Order, error) {
+	for _, order := range repository.orders {
+		if order.OdooReference == odooReference {
+			return order, nil
+		}
+	}
+
+	return domain.Order{}, errOrderNotFound(odooReference)
 }
 
 func (repository *MemoryOrderCachingRepository) OrdersWithFilter(filter caching.OrderFilter) ([]domain.Order, error) {
@@ -58,8 +73,8 @@ func (repository *MemoryOrderCachingRepository) OrdersWithFilter(filter caching.
 		// isCityIncluded := StringSliceIncludes(order.City, filter.Cities) || len(filter.Cities) == 0
 		// isPlatformIncluded := StringSliceIncludes(order.PlatformName, filter.Platforms) || len(filter.Platforms) == 0
 
-        isCityIncluded := slices.Contains(filter.Cities, order.City) || len(filter.Cities) == 0
-        isPlatformIncluded := slices.Contains(filter.Platforms, order.PlatformName) || len(filter.Platforms) == 0
+		isCityIncluded := slices.Contains(filter.Cities, order.City) || len(filter.Cities) == 0
+		isPlatformIncluded := slices.Contains(filter.Platforms, order.PlatformName) || len(filter.Platforms) == 0
 
 		if isSearchIncluded && isCityIncluded && isPlatformIncluded {
 			orders = append(orders, order)
