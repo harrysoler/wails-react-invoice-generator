@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { FacetedFilter } from ".";
+import { FacetedFilter } from "./faceted-filter.component";
 
 const meta = {
   title: "Orders/Sidebar/FacetedFilter",
@@ -11,6 +11,13 @@ const meta = {
   args: {
     onChange: fn(),
   },
+  decorators: [
+    (Story) => (
+      <div className="w-[19rem] flex flex-col">
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof FacetedFilter>;
 
 export default meta;
