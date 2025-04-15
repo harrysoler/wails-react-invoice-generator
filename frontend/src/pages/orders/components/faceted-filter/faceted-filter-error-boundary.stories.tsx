@@ -30,6 +30,5 @@ export const Default: Story = {
     error: new Error(
       "Simulating Lost connection to api function getFilter",
     ),
-    title: "Plataforma",
   },
 };

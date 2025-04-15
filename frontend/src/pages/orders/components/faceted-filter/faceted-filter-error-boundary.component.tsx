@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { handleError } from "@/helpers/error-handler";
 import { CircleAlert } from "lucide-react";
+
+import { handleError } from "@/utils";
 
 type FacetedFilterErrorBoundaryProps = {
   error: unknown;

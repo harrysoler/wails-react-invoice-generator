@@ -1,8 +1,9 @@
+import { MapPin, Phone, ShoppingCart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "wouter";
+
 import { getOrderEntry } from "@/helpers";
 import { domain } from "@wailsjs/go/models";
-import { MapPin, Phone, ShoppingCart } from "lucide-react";
-import { Link } from "wouter";
 
 type OrderCardProps = {
   order: domain.Order;

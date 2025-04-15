@@ -9,13 +9,8 @@ import (
 	"dev/harrysoler/invoicingvenecia/internal/order/domain"
 	"dev/harrysoler/invoicingvenecia/internal/order/parser"
 	"dev/harrysoler/invoicingvenecia/internal/order/parser/excelize"
-	"errors"
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
-)
-
-var (
-    ErrCancelledOpenFile = errors.New("cancelled open file")
 )
 
 type App struct {
@@ -54,10 +49,6 @@ func (app *App) OpenExcelFile() (string, error) {
 	})
 	if err != nil {
 		return "", err
-	}
-
-	if path == "" {
-		return "", ErrCancelledOpenFile
 	}
 
 	return path, nil

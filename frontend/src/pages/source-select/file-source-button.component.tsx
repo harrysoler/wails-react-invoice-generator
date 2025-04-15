@@ -1,7 +1,8 @@
 import { File } from "lucide-react";
+
 import { SourceButton } from "./source-button.component";
+import { handleError } from "@/utils";
 import { openFile } from "./file-source.api";
-import { handleError } from "@/helpers/error-handler";
 
 type FileSourceButtonProps = {
   onSelectFile: (path: string) => void;

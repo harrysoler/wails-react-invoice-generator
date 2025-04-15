@@ -1,6 +1,7 @@
-import { usePromiseModal } from "@prezly/react-promise-modal";
+import { mapToErrorIfUndefined } from "@/utils";
 import { SheetSelectDialog } from "./sheet-select-dialog.component";
-import { err, ok, ResultAsync } from "neverthrow";
+import { usePromiseModal } from "@prezly/react-promise-modal";
+import { ResultAsync } from "neverthrow";
 
 export function useSelectSheet() {
   const sheetSelectDialog = usePromiseModal<string, { sheets: string[] }>(
@@ -11,11 +12,8 @@ export function useSelectSheet() {
     return ResultAsync.fromPromise(
       sheetSelectDialog.invoke({ sheets }),
       () => {},
-    ).andThen(voidErrorIfUndefined);
+    ).andThen(mapToErrorIfUndefined);
   }
 
   return [sheetSelectDialog.modal, selectSheet] as const;
 }
-
-const voidErrorIfUndefined = <T,>(v: T | undefined) =>
-  v === undefined ? err() : ok(v);

@@ -4,12 +4,13 @@ import {
   ParseOrdersExcelFile,
   SheetsFromExcelFile,
 } from "@wailsjs/go/main/App";
+import { mapToErrorIfEmpty } from "@/utils";
 
 export function openFile(): ResultAsync<string, unknown> {
   return ResultAsync.fromPromise(
     OpenExcelFile(),
     (error) => error,
-  );
+  ).andThen(mapToErrorIfEmpty);
 }
 
 export function getSheetsFromFile(
