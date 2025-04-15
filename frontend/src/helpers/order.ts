@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { domain } from "@wailsjs/go/models";
 
 export function getOrderEntry(order: domain.Order): string {
-  return order.OdooReference.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+  return order.OdooReference;
 }
 
 export function getMockOrder(): domain.Order {
@@ -18,10 +18,10 @@ export function getMockOrder(): domain.Order {
       Name: faker.commerce.productName(),
       Quantity: faker.number.int({ min: 1, max: 10 }),
     }), {
-        count: {
-            min: 1,
-            max: 10,
-        }
+      count: {
+        min: 1,
+        max: 10,
+      },
     }),
   });
 }
