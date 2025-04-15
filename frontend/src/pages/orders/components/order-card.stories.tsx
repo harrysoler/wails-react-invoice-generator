@@ -10,7 +10,7 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <ul>
+      <ul className="w-[19rem]">
         <Story />
       </ul>
     ),

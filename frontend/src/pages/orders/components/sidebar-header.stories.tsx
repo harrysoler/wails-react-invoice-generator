@@ -5,6 +5,13 @@ const meta = {
   title: "Orders/Sidebar/Header",
   component: OrdersSidebarHeader,
   args: {},
+  decorators: [
+    (Story) => (
+      <div className="w-[19rem]">
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof OrdersSidebarHeader>;
 
 export default meta;
