@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { FacetedFilterSkeleton } from "./faceted-filter-skeleton.component";
 
 const meta = {
-  title: "Orders/Sidebar/FacetedFilterSkeleton",
+  title: "Orders/Sidebar/FacetedFilter",
   component: FacetedFilterSkeleton,
   parameters: {
     layout: "centered",
@@ -19,6 +19,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof FacetedFilterSkeleton>;
 
-export const Default: Story = {
+export const Loading: Story = {
   args: {},
 };

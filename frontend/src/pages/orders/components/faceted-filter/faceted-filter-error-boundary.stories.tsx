@@ -4,7 +4,7 @@ import { fn } from "@storybook/test";
 import { Toaster } from "sonner";
 
 const meta = {
-  title: "Orders/Sidebar/FacetedFilterError",
+  title: "Orders/Sidebar/FacetedFilter",
   component: FacetedFilterErrorBoundary,
   parameters: {
     layout: "centered",
@@ -25,7 +25,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof FacetedFilterErrorBoundary>;
 
-export const Default: Story = {
+export const Failed: Story = {
   args: {
     error: new Error(
       "Simulating Lost connection to api function getFilter",

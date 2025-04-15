@@ -3,7 +3,7 @@ import { SidebarOrderListErrorBoundary } from "./sidebar-order-list-error.compon
 import { fn } from "@storybook/test";
 
 const meta = {
-  title: "Orders/Sidebar/ListError",
+  title: "Orders/Sidebar/List",
   component: SidebarOrderListErrorBoundary,
   args: {
     resetErrorBoundary: fn(),
@@ -20,7 +20,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof SidebarOrderListErrorBoundary>;
 
-export const Default: Story = {
+export const Failed: Story = {
   args: {
     error: new Error(
       "Simulating Lost connection to api function getOrdersByFilter",

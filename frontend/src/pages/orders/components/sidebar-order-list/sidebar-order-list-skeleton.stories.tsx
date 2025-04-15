@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { SidebarOrderListSkeleton } from "./sidebar-order-list-skeleton.component";
 
 const meta = {
-  title: "Orders/Sidebar/ListSkeleton",
+  title: "Orders/Sidebar/List",
   component: SidebarOrderListSkeleton,
   args: {},
   decorators: [
@@ -17,6 +17,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof SidebarOrderListSkeleton>;
 
-export const Default: Story = {
+export const Loading: Story = {
   args: {},
 };
