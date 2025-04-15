@@ -1,12 +1,10 @@
 import { useLocation } from "wouter";
 import { Cloud } from "lucide-react";
 
-import { getSheetsFromFile, parseOrdersFile } from "./file-source.api";
-import { OrdersSourceCard } from "./orders-source-card.component";
-import { FileSourceButton } from "./file-source-button.component";
-import { SourceButtonRow } from "./source-button-row.component";
-import { useSelectSheet } from "./use-select-sheet";
-import { SourceButton } from "./source-button.component";
+import { OrdersSourceCard, SourceButton, SourceButtonRow } from "@/pages/source-select/components";
+import { getSheetsFromFile, parseOrdersFile } from "@/pages/source-select/api";
+import { FileSourceButton } from "@/pages/source-select/containers";
+import { useSelectSheet } from "@/pages/source-select/hooks";
 import { handleError } from "@/utils";
 import logo from "@/assets/images/logo.webp";
 
