@@ -5,8 +5,8 @@ export function useToggleArray<T>(values?: T[], onChange?: (values: T[]) => void
   const has = (value: T) => array.includes(value);
 
   function toggle(value: T) {
-    setArray((values) => {
-      const newValues = toggleArrayValue(values, value);
+    setArray((prevArray) => {
+      const newValues = toggleArrayValue(prevArray, value);
       onChange?.(newValues);
       return newValues;
     });
