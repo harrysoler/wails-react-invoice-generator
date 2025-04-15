@@ -1,10 +1,5 @@
-export { SidebarOrderListErrorBoundary } from "./sidebar-order-list/sidebar-order-list-error.component";
-export { SidebarOrderListSkeleton } from "./sidebar-order-list/sidebar-order-list-skeleton.component";
-export { SidebarOrderList } from "./sidebar-order-list/sidebar-order-list.component";
-
-export { FacetedFilterErrorBoundary } from "./faceted-filter/faceted-filter-error-boundary.component";
-export { FacetedFilterSkeleton } from "./faceted-filter/faceted-filter-skeleton.component";
-export { FacetedFilter } from "./faceted-filter/faceted-filter.component";
+export * from "./sidebar-order-list";
+export * from "./faceted-filter";
 
 export { OrdersSidebarHeader } from "./sidebar-header.component";
 export { OrderCardSkeleton } from "./order-card-skeleton.component";
