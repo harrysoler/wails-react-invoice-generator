@@ -1,7 +1,9 @@
+import {
+  ExportOrderButton,
+  OrderDetailsList,
+  OrderProductsTable,
+} from "@/pages/orders/components";
 import { domain } from "@wailsjs/go/models";
-import { OrderProductsTable } from "./order-products-table.component";
-import { OrderDetailsList } from "./order-details-list.component";
-import { ExportOrderButton } from "./export-order-button.component";
 
 type OrderDetailProps = {
   order: domain.Order;
