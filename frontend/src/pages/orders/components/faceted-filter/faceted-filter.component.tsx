@@ -40,7 +40,7 @@ export function FacetedFilter(props: FacetedFilterProps) {
         valuesLength={selectedValues.length}
         title={props.title}
       />
-      <PopoverContent className="w-[200px] p-0" align="start">
+      <PopoverContent className="max-w-[300px] p-0" align="start">
         <Command>
           <CommandInput placeholder={props.title} />
           <CommandList>
@@ -81,10 +81,10 @@ function FacetedFilterTrigger(props: FacetedFilterTriggerProps) {
         {props.title}
         {props.valuesLength > 0 && (
           <>
-            <Separator orientation="vertical" className="mx-2 h-4 justify-self-end" />
+            <Separator orientation="vertical" className="mx-2 h-4" />
             <Badge
               variant="secondary"
-              className="rounded-sm px-1 font-normal justify-self-end"
+              className="rounded-sm px-1 font-normal"
             >
               {props.valuesLength}
             </Badge>
