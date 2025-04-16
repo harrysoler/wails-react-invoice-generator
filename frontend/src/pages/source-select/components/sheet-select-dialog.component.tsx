@@ -19,7 +19,7 @@ type SheetSelectDialogProps = {
 };
 
 export function SheetSelectDialog(props: SheetSelectDialogProps) {
-  // TODO: Handle sheets lenght of 1 case
+  // TODO: Handle case of sheets lenght of 1
   const [selectedSheet, setSelectedSheet] = useState<string>(props.sheets[0]);
 
   const onOpenChange = (isOpen: boolean) => isOpen ? {} : props.onDismiss();
@@ -41,7 +41,9 @@ export function SheetSelectDialog(props: SheetSelectDialogProps) {
             <SelectGroup>
               <SelectLabel>Libros</SelectLabel>
               {props.sheets.map((sheet) => (
-                <SelectItem value={sheet}>{sheet}</SelectItem>
+                <SelectItem value={sheet} key={"sheet-select-" + sheet}>
+                  {sheet}
+                </SelectItem>
               ))}
             </SelectGroup>
           </SelectContent>
