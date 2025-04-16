@@ -6,6 +6,10 @@ export function OpenExcelFile() {
   return window['go']['main']['App']['OpenExcelFile']();
 }
 
+export function OrderByOdooReference(arg1) {
+  return window['go']['main']['App']['OrderByOdooReference'](arg1);
+}
+
 export function OrdersByFilter(arg1) {
   return window['go']['main']['App']['OrdersByFilter'](arg1);
 }

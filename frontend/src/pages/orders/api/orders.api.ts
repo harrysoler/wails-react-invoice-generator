@@ -1,4 +1,5 @@
 import {
+  OrderByOdooReference,
   OrdersByFilter,
   OrdersCities,
   OrdersPlatformNames,
@@ -9,6 +10,10 @@ export async function getOrdersByFilter(
   filter: caching.OrderFilter,
 ) {
   return OrdersByFilter(filter);
+}
+
+export async function getOrderByOdooReference(odooReference: string) {
+  return OrderByOdooReference(odooReference);
 }
 
 export async function getPlatformNames() {

@@ -76,6 +76,10 @@ func (app *App) OrdersByFilter(filter caching.OrderFilter) ([]domain.Order, erro
 	return app.orderRepository.OrdersWithFilter(filter)
 }
 
+func (app *App) OrderByOdooReference(odooReference string) (domain.Order, error) {
+	return app.orderRepository.OrderWithOdoo(odooReference)
+}
+
 func (app *App) OrdersPlatformNames() []string {
 	return app.orderRepository.Platforms()
 }
