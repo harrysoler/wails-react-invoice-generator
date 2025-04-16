@@ -24,7 +24,7 @@ export function SheetSelectDialog(props: SheetSelectDialogProps) {
 
   const onOpenChange = (isOpen: boolean) => isOpen ? {} : props.onDismiss();
   const onClickAccept = () => props.onSubmit(selectedSheet);
-  const onSelectValueChange = (value: string) => setSelectedSheet(value);
+  const onSelectChange = (value: string) => setSelectedSheet(value);
 
   return (
     <Dialog open={props.show} onOpenChange={onOpenChange}>
@@ -32,7 +32,7 @@ export function SheetSelectDialog(props: SheetSelectDialogProps) {
         <DialogTitle>Selecciona un libro del archivo</DialogTitle>
         <Select
           value={selectedSheet}
-          onValueChange={onSelectValueChange}
+          onValueChange={onSelectChange}
         >
           <SelectTrigger className="w-full" id="sheet-select">
             <SelectValue placeholder="Selecciona una hoja" />

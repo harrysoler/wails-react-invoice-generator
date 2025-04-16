@@ -87,3 +87,7 @@ func (app *App) OrdersPlatformNames() []string {
 func (app *App) OrdersCities() []string {
 	return app.orderRepository.Cities()
 }
+
+func (app *App) GenerateInvoice(order domain.Order, copies int) (invoice.InvoicePath, error) {
+	return app.invoiceService.GenerateInvoice(order, copies)
+}
