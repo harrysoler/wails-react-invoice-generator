@@ -6,6 +6,7 @@ import (
 	"dev/harrysoler/invoicingvenecia/internal/order/domain"
 	"fmt"
 	"path/filepath"
+	"strings"
 
 	"github.com/johnfercher/maroto/v2"
 	"github.com/johnfercher/maroto/v2/pkg/components/code"
@@ -47,7 +48,8 @@ func (repository *MarotoStampsRepository) GenerateInvoice(order domain.Order, qu
 		return "", err
 	}
 
-	path = filepath.Join(path, "stamps.pdf")
+	filename := strings.ReplaceAll(order.ClientName, " ", "_") + "_guias.pdf"
+	path = filepath.Join(path, filename)
 
 	err = document.Save(path)
 	if err != nil {
