@@ -5,7 +5,7 @@ import { InvoiceCopiesDialog } from "@/pages/orders/components";
 import { mapToErrorIfUndefined } from "@/utils";
 
 export function useInvoiceCopies() {
-  const invoiceCopiesDialog = usePromiseModal((props) => (
+  const invoiceCopiesDialog = usePromiseModal<number>((props) => (
     <InvoiceCopiesDialog {...props} />
   ));
 

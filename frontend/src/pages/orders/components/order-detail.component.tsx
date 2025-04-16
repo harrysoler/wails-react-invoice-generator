@@ -11,7 +11,7 @@ type OrderDetailProps = {
 
 export function OrderDetail(props: OrderDetailProps) {
   return (
-    <main className="max-w-3xl mx-auto">
+    <main className="max-w-3xl mx-auto py-10">
       <div className="flex flex-row justify-between py-4">
         <h1 className="pb-2 text-3xl font-semibold tracking-tight">
           {props.order.ClientName}
