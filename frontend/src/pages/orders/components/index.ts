@@ -1,11 +1,9 @@
 export * from "./sidebar-order-list";
 export * from "./faceted-filter";
+export * from "./order-detail";
+export * from "./order-card";
 
 export { OrdersSidebarHeader } from "./sidebar-header.component";
 export { InvoiceCopiesDialog } from "./invoice-copies-dialog.component";
-export { OrderDetailSkeleton } from "./order-detail-skeleton.component";
-export { OrderCardSkeleton } from "./order-card-skeleton.component";
 export { ReturnButton } from "./return-button.component";
 export { SearchInput } from "./search-input.component";
-export { OrderDetail } from "./order-detail.component";
-export { OrderCard } from "./order-card.component";

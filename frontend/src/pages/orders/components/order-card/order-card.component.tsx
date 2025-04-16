@@ -10,6 +10,8 @@ type OrderCardProps = {
 };
 
 export function OrderCard(props: OrderCardProps) {
+  const productsLenght = props.order.Products.length;
+
   // Route nested from /orders to /
   return (
     <li>
@@ -33,7 +35,7 @@ export function OrderCard(props: OrderCardProps) {
         <div className="flex flex-row flex-wrap gap-2">
           <Badge>{props.order.City}</Badge>
           <Badge variant="secondary">
-            {props.order.Products.length} Productos
+            {productsLenght} Producto{productsLenght > 1 && "s"}
           </Badge>
         </div>
       </Link>

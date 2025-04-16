@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { SidebarOrderListErrorBoundary } from "./sidebar-order-list-error.component";
+import { SidebarOrderListErrorBoundary } from ".";
 import { fn } from "@storybook/test";
 
 const meta = {
