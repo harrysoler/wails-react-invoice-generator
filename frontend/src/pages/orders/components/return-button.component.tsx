@@ -1,15 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { useLocation } from "wouter";
+import { Link } from "wouter";
 
 export function ReturnButton() {
-  const [_, navigate] = useLocation();
-
-  const onClick = () => navigate("/");
-
   return (
-    <Button variant="outline" onClick={onClick} className="shadow-none">
-      <ArrowLeft />Regresar
-    </Button>
+    <Link href="/">
+      <Button variant="outline" className="shadow-none">
+        <ArrowLeft />Regresar
+      </Button>
+    </Link>
   );
 }

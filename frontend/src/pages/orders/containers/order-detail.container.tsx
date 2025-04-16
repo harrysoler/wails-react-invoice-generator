@@ -10,11 +10,13 @@ import {
   OrderDetail,
   OrderDetailErrorBoundary,
   OrderDetailSkeleton,
+  OrderNotSelected,
 } from "@/pages/orders/components";
 import { generateInvoices, getOrderByOdooReference } from "@/pages/orders/api";
 import { useInvoiceCopies } from "@/pages/orders/hooks";
 import { handleError } from "@/utils";
 import { domain } from "@wailsjs/go/models";
+import { useSearchParams } from "wouter";
 
 type OrderDetailContainerProps = {
   odooReference: string;
@@ -57,13 +59,20 @@ function OrderDetailContainerImpl(props: OrderDetailContainerProps) {
   );
 }
 
-export function OrderDetailContainer(props: OrderDetailContainerProps) {
+export function OrderDetailContainer() {
   const { reset } = useQueryErrorResetBoundary();
+  const [searchParams, _] = useSearchParams();
+
+  const odooReference = searchParams.get("odoo");
+
+  if (odooReference === null) {
+    return <OrderNotSelected />;
+  }
 
   return (
     <ErrorBoundary onReset={reset} FallbackComponent={OrderDetailErrorBoundary}>
       <Suspense fallback={<OrderDetailSkeleton />}>
-        <OrderDetailContainerImpl {...props} />
+        <OrderDetailContainerImpl odooReference={odooReference} />
       </Suspense>
     </ErrorBoundary>
   );

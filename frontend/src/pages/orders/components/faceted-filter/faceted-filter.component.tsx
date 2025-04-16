@@ -81,10 +81,10 @@ function FacetedFilterTrigger(props: FacetedFilterTriggerProps) {
         {props.title}
         {props.valuesLength > 0 && (
           <>
-            <Separator orientation="vertical" className="mx-2 h-4" />
+            <Separator orientation="vertical" className="mx-2 h-4 justify-self-end" />
             <Badge
               variant="secondary"
-              className="rounded-sm px-1 font-normal"
+              className="rounded-sm px-1 font-normal justify-self-end"
             >
               {props.valuesLength}
             </Badge>

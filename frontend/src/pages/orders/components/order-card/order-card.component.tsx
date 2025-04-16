@@ -12,11 +12,10 @@ type OrderCardProps = {
 export function OrderCard(props: OrderCardProps) {
   const productsLenght = props.order.Products.length;
 
-  // Route nested from /orders to /
   return (
     <li>
       <Link
-        href={"/" + getOrderEntry(props.order)}
+        href={"/orders?odoo=" + getOrderEntry(props.order)}
         className="flex flex-col items-start gap-4 border-b p-4 text-sm leading-tight last:border-b-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
       >
         <h2 className="text-xl font-semibold leading-none tracking-tight">

@@ -6,7 +6,7 @@ export function Router() {
   return (
     <Switch>
       <Route path="/" component={SourceSelectPage} />
-      <Route path="/orders" component={OrdersPage} nest/>
+      <Route path="/orders" component={OrdersPage}/>
     </Switch>
   );
 }
