@@ -3,6 +3,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { OrdersSidebarContainer } from "@/pages/orders/containers";
 import { Route, Switch } from "wouter";
 import { OrderDetailContainer } from "./containers/order-detail.container";
+import { OrderNotSelected } from "./components";
 
 export function OrdersPage() {
   return (
@@ -12,9 +13,7 @@ export function OrdersPage() {
         <Route path=":odoo">
           {(params) => <OrderDetailContainer odooReference={params.odoo} />}
         </Route>
-        <Route>
-          Sin order seleccionada
-        </Route>
+        <Route component={OrderNotSelected} />
       </Switch>
     </SidebarProvider>
   );
