@@ -4,7 +4,7 @@ import { toast } from "sonner";
 
 import { generateInvoices, getOrderByOdooReference } from "@/pages/orders/api";
 import { useInvoiceCopies } from "@/pages/orders/hooks";
-import { OrderDetail } from "@/pages/orders/components";
+import { OrderDetail, OrderDetailSkeleton } from "@/pages/orders/components";
 import { handleError } from "@/utils";
 import { domain } from "@wailsjs/go/models";
 
@@ -37,7 +37,7 @@ export function OrderDetailContainer(props: OrderDetailContainerProps) {
     setIsExportLoading(false);
   }
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <OrderDetailSkeleton/>;
   if (error) return <p className="text-destructive">Error {String(error)}</p>;
   if (order === undefined) return <p>Undefined order</p>;
 

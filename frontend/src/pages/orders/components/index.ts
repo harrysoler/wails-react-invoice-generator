@@ -3,6 +3,7 @@ export * from "./faceted-filter";
 
 export { OrdersSidebarHeader } from "./sidebar-header.component";
 export { InvoiceCopiesDialog } from "./invoice-copies-dialog.component";
+export { OrderDetailSkeleton } from "./order-detail-skeleton.component";
 export { OrderCardSkeleton } from "./order-card-skeleton.component";
 export { ReturnButton } from "./return-button.component";
 export { SearchInput } from "./search-input.component";
